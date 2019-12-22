@@ -1028,3 +1028,8 @@ vendors:
 css: css
 js: js
 images: images
+
+# typing effect
+typing_effect:
+  colorful: true  # 礼花特效
+  shake: false  # 震动特效
