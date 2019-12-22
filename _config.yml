@@ -101,3 +101,10 @@ deploy:
   type: git
   repo: https://github.com/onewesong/onewesong.github.io.git
   branch: master
+
+# 本地搜索
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
