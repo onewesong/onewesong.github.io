@@ -55,5 +55,14 @@
   {%- if theme.pjax %}
     </div>
   {%- endif %}
+  <script async src="https://script-1256884783.file.myqcloud.com/cursor/fireworks.js"></script>
+
+    <script src="https://script-1256884783.file.myqcloud.com/activate-power-mode.min.js"></script>
+    <script>
+      POWERMODE.colorful = true;
+      POWERMODE.shake = false;
+      document.body.addEventListener('input', POWERMODE);
+    </script>
+    
 </body>
 </html>
