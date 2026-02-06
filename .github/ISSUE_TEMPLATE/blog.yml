@@ -1,0 +1,36 @@
+name: Blog 文章
+description: 创建带 blog 标签的 Issue，自动生成 Hexo 文章并发布
+labels:
+  - blog
+body:
+  - type: textarea
+    id: content
+    attributes:
+      label: 正文
+      description: 支持 Markdown；图片请直接粘贴外链（图床/Issue 图片链接都可以）
+      placeholder: |
+        从这里开始写正文...
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: 标签（tags）
+      description: 逗号分隔，例如：AI,效率
+      placeholder: AI,效率
+
+  - type: input
+    id: categories
+    attributes:
+      label: 分类（categories）
+      description: 逗号分隔，例如：技术,随笔
+      placeholder: 技术,随笔
+
+  - type: input
+    id: date
+    attributes:
+      label: 发布时间（可选）
+      description: 留空则自动使用触发时间；建议格式 2026-02-03 10:30:00
+      placeholder: 2026-02-03 10:30:00
+
