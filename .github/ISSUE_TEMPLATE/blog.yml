@@ -31,6 +31,5 @@ body:
     id: date
     attributes:
       label: 发布时间（可选）
-      description: 留空则自动使用触发时间；建议格式 2026-02-03 10:30:00
-      placeholder: 2026-02-03 10:30:00
-
+      description: "留空则自动使用触发时间；建议格式 2026-02-03 10:30:00"
+      placeholder: "2026-02-03 10:30:00"
