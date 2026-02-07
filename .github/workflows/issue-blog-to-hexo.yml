@@ -1,0 +1,53 @@
+name: Issue(Blog) -> Hexo Post
+
+on:
+  issues:
+    types: [opened, edited, labeled, reopened]
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: issue-blog-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  issue-to-post:
+    if: contains(github.event.issue.labels.*.name, 'blog')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout hexo branch
+        uses: actions/checkout@v4
+        with:
+          ref: hexo
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Generate or update post
+        env:
+          GITHUB_EVENT_PATH: ${{ github.event_path }}
+        run: node .github/scripts/issue-to-post.js
+
+      - name: Commit changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No staged changes."
+            exit 0
+          fi
+          git commit -m "blog: sync issue #${{ github.event.issue.number }} -> post"
+
+      - name: Push to hexo
+        run: |
+          git push origin hexo
